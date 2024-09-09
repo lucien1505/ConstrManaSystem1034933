@@ -1,0 +1,112 @@
+<?php
+session_start();
+include 'includes/db.php';
+
+// Check if user is logged in
+if (!isset($_SESSION['user_id'])) {
+    header('Location: login.php');
+    exit();
+}
+
+$user_id = $_SESSION['user_id'];
+$role = $_SESSION['role'];
+$username = $_SESSION['username'];
+
+// Fetch projects
+if ($role == 'admin') {
+    $sql = "SELECT p.*, u.username as client_name FROM projects p LEFT JOIN users u ON p.client_id = u.id";
+    $stmt = $conn->prepare($sql);
+} else {
+    $sql = "SELECT * FROM projects WHERE client_id = ?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("i", $user_id);
+}
+$stmt->execute();
+$result = $stmt->get_result();
+?>
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Lokai Construction</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        <h1>Lokai Construction Dashboard</h1>
+        <nav>
+            <ul>
+                <li><a href="dashboard.php">Home</a></li>
+                <?php if ($role == 'admin'): ?>
+                    <li><a href="create_project.php">Create Project</a></li>
+                <?php endif; ?>
+                <li><a href="logout.php">Logout</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Welcome, <?php echo htmlspecialchars($username); ?> (<?php echo htmlspecialchars($role); ?>)</h2>
+
+        <?php if ($role == 'admin' || $role == 'client'): ?>
+            <section id="projects">
+                <h3>Projects</h3>
+                <?php if ($role == 'admin'): ?>
+                    <a href="create_project.php" class="button">Create New Project</a>
+                <?php endif; ?>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Project Name</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                            <?php if ($role == 'admin'): ?>
+                                <th>Client</th>
+                            <?php endif; ?>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <?php
+                        if ($result->num_rows > 0) {
+                            while($row = $result->fetch_assoc()) {
+                                echo "<tr>";
+                                echo "<td>" . htmlspecialchars($row['name']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['description']) . "</td>";
+                                echo "<td>" . htmlspecialchars($row['status']) . "</td>";
+                                if ($role == 'admin') {
+                                    echo "<td>" . htmlspecialchars($row['client_name']) . "</td>";
+                                }
+                                echo "<td>";
+                                echo "<a href='view_project.php?id=" . $row['id'] . "'>View</a>";
+                                if ($role == 'admin') {
+                                    echo " | <a href='edit_project.php?id=" . $row['id'] . "'>Edit</a>";
+                                    echo " | <a href='delete_project.php?id=" . $row['id'] . "' onclick='return confirm(\"Are you sure?\");'>Delete</a>";
+                                }
+                                echo "</td>";
+                                echo "</tr>";
+                            }
+                        } else {
+                            echo "<tr><td colspan='5'>No projects found</td></tr>";
+                        }
+                        ?>
+                    </tbody>
+                </table>
+            </section>
+        <?php endif; ?>
+
+        <?php if ($role == 'contractor' || $role == 'architect'): ?>
+            <section id="assigned-projects">
+                <h3>Assigned Projects</h3>
+                <p>This section is under development. Soon, you'll be able to see projects assigned to you here.</p>
+            </section>
+        <?php endif; ?>
+    </main>
+
+    <footer>
+        <p>&copy; <?php echo date("Y"); ?> Lokai Construction. All rights reserved.</p>
+    </footer>
+</body>
+</html>

@@ -1,0 +1,571 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lokai Construction - Home</title>
+    <style>
+        /* Global styles for the entire page */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Styles for the header section */
+        header {
+            background-color: #293629; /* Dark green background */
+            color: white; /* White text color */
+            padding: 20px 0;
+            text-align: center; /* Centered text */
+        }
+
+        header img {
+            width: 100px; /* Logo width */
+        }
+
+        /* Styles for the navigation bar */
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background-color: #4CAF50; /* Green background */
+            padding: 5px 10px;
+            position: relative;
+        }
+
+        /* Styles for the logo section within the nav bar */
+        nav .logo {
+            display: flex;
+            align-items: center;
+        }
+
+        nav .logo h1 {
+            margin-left: 10px;
+            font-size: 1.2em;
+        }
+
+        nav .logo a {
+            text-decoration: none;
+            color: white;
+        }
+
+        /* Styles for the links in the navigation bar */
+        nav a {
+            color: white;
+            text-decoration: none;
+            padding: 5px 10px;
+            font-size: 0.9em;
+        }
+
+        nav a:hover {
+            background-color: #c49618; /* Gold background on hover */
+        }
+
+        /* Styles for the login button */
+        .login-button {
+            background-color: #293629; /* Dark green background */
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            font-size: 0.9em;
+            cursor: pointer;
+            text-decoration: none;
+        }
+
+        .login-button:hover {
+            background-color: #c49618; /* Gold background on hover */
+        }
+
+        /* Main content section styles */
+        main {
+            padding: 20px;
+            text-align: center;
+            background-color: #f2f2f2; /* Light gray background */
+            min-height: calc(100vh - 140px); /* Full viewport height minus header/footer */
+        }
+
+        /* Notification section styles */
+        .notify-section {
+            margin-top: 40px;
+        }
+
+        .notify-section h3 {
+            margin-bottom: 10px;
+        }
+
+        .notify-section form {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .notify-section input[type="email"] {
+            padding: 10px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-right: 10px;
+        }
+
+        .notify-section button {
+            padding: 10px 20px;
+            background-color: #293629; /* Dark green background */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        .notify-section button:hover {
+            background-color: #c49618; /* Gold background on hover */
+        }
+
+        /* Social media icons section styles */
+        .social-media {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .social-media a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 20px;
+            margin-right: 10px;
+        }
+
+        /* Footer links section styles */
+        .footer-links {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .footer-links a {
+            color: #fff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        /* Footer section styles */
+        footer {
+            background-color: #293629; /* Dark green background */
+            color: white;
+            text-align: center;
+            padding: 10px 0;
+            width: 100%;
+        }
+
+        /* Slider (hero section) styles */
+        .hero-section {
+            position: relative;
+            width: 100%;
+            height: 100vh; /* Full viewport height */
+            overflow: hidden;
+        }
+
+        .slideshow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        .slides {
+            display: flex;
+            width: 500%; /* Five slides in a row */
+            height: 100%;
+            animation: slide 25s infinite; /* Slide animation */
+        }
+
+        .slide {
+            width: 20%; /* Each slide takes 20% of the width */
+            flex-shrink: 0;
+            height: 100%;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* Keyframes for slide animation */
+        @keyframes slide {
+            0%, 20% {
+                transform: translateX(0);
+            }
+            25%, 45% {
+                transform: translateX(-20%);
+            }
+            50%, 70% {
+                transform: translateX(-40%);
+            }
+            75%, 95% {
+                transform: translateX(-60%);
+            }
+            100% {
+                transform: translateX(-80%);
+            }
+        }
+
+        /* Overlay styles for hero section */
+        .overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Dark overlay */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .content {
+            text-align: center;
+            color: white;
+        }
+
+        .content h1 {
+            font-size: 3em;
+            margin-bottom: 0.5em;
+        }
+
+        .content h2 {
+            font-size: 2em;
+            margin-bottom: 1em;
+        }
+
+        .content p {
+            font-size: 1.2em;
+            margin-bottom: 2em;
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .button {
+            background-color: #7fc242; /* Bright green */
+            color: white;
+            padding: 15px 30px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 1em;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #6bb231;
+        }
+
+        /* Container styles for contact form */
+        .container {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Form styles */
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            color: #333;
+        }
+
+        input,
+        textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50; /* Green button */
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049; /* Darker green on hover */
+        }
+
+        /* Content container for additional sections */
+        .content-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-top: 20px;
+        }
+
+        .content.2 {
+            flex: 1;
+            padding-right: 20px;
+        }
+
+        .slides1 {
+            flex: 1;
+        }
+
+        /* Adjusted slider styles within the content container */
+        .slides1 .slides {
+            display: flex;
+            width: 100%; /* Adjusted to fit the container */
+            height: 300px; /* Adjusted height */
+            animation: slide 25s infinite;
+            overflow: hidden;
+        }
+
+        .slides1 .slide {
+            width: 20%;
+            flex-shrink: 0;
+            height: 100%;
+        }
+
+        .slides1 .slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- Header with navigation -->
+    <header>
+        <nav>
+            <div class="logo">
+                <a href="home.html"><img src="images/logo.png" alt="Lokai Construction Logo"></a>
+                <h1>Lokai Construction</h1>
+            </div>
+            <a href="home.html">Home</a>
+            <a href="about.html">About Us</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="login.php" class="login-button">Login</a>
+        </nav>
+    </header>
+
+    <main>
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/image1.jpg" alt="Slide 1"></div>
+                    <div class="slide"><img src="images/image2.jpg" alt="Slide 2"></div>
+                    <div class="slide"><img src="images/image3.jpg" alt="Slide 3"></div>
+                    <div class="slide"><img src="images/image4.jpg" alt="Slide 4"></div>
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="content">
+                    <h1>Welcome to Lokai Construction</h1>
+                    <h2>Your Trusted Partner in Construction</h2>
+                    <p>At Lokai Construction, we build with integrity and excellence. Our team of experienced professionals is dedicated to delivering high-quality construction services to meet all your needs. From residential to commercial projects, we have the expertise to make your vision a reality.</p>
+                    </br>
+                    <a href="contact.html" class="button">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </br>
+    <div class="content-container">
+            <div class="content.2">
+                <h1>Building Contractors DRC</h1>
+                <p>Lokai Construction are one of the most prestigious Building Contractors in DRC. Based in South Kivu/Bukavu, we serve also Goma, Bukavu and the surrounding areas.</p>
+                <p>Lokai Construction Building Contractors lead the field in the construction of luxury innovatively designed New Builds, Refurbishments, Extensions, Basements, Lofts, Bathrooms, Kitchens and Smart Home Systems.</p>
+                <p>We offer a full Design and Build turnkey service. This gives all of our valued clients the opportunity to realise your property aspirations.</p>
+                <p>Our professional team will guide you through the planning process from inception to the initial planning of the project all the way through to the completion of your project.</p>
+                <p>Our team of highly skilled and incredibly professional tradesmen are trained in the art of cleanliness, tidiness and discretion. It is our promise to always do our best to ensure our clients can live in their properties whilst works are being carried out with minimal disturbance being caused to their daily lives.</p>
+                <p>Having spent a time within the industry, we have built a formidable team of professional contractors working alongside and for us. Having been founded in 2021 and ever since have been providing all of our valued clients with a professional, reliable and knowledgeable service.</p>
+                <p>Lokai Construction have developed over this time period and has become one of Bukavu's leading design and build contractors. We display a wide array of Bathroom, Kitchen, Lighting & electrical fixtures & fittings. We welcome Architects, Interior Designers & Project Specifiers to visit with clients for proposal and specification purposes.</p>
+            </div>
+            </div>
+            </br>
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/Site.jpg" alt="New Build 1"></div>
+                    <div class="slide"><img src="images/123.webp" alt="New Build 2"></div>
+                    <div class="slide"><img src="images/image4.jpg" alt="New Build 3"></div>
+                </div>
+            </div>
+        
+            <div class="overlay">
+                <div class="content">
+                    <h1>New Build</h1>
+                    <h2>Creating innovative and high-quality new build projects that stand the test of time.</h2>
+                    <p>Lokai Construction are recognised across the construction industry as a leading New Build Company applying their trade across Drc, Having spent over a years within the industry, we have built a formidable team of highly experienced and professional staff, consisting of tradesman, engineers, foremen, project managers and quantity surveyors. Our team is enthusiastic about new build construction and relish the opportunity to make your dream new build home a reality. We do to believe in sub-contractors as quality control and attention to detail are of paramount importance to us.</p>
+                </div>
+            </div>
+        </div>
+
+
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/land1.jpg" alt="Landscaping 1"></div>
+                    <div class="slide"><img src="images/land2.jpg" alt="Landscaping 2"></div>
+                    <div class="slide"><img src="images/land3.jpeg" alt="Landscaping 3"></div>
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="content">
+                    <h1>Landscaping</h1>
+                    <h2>Transforming outdoor spaces into beautiful and functional environments.</h2>
+                    <p>
+                      This where we exchange ideas on general landscaping, hire experts in the field and creating a good place for matters affecting landscaping  
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/refurb1.jpg" alt="Refurbishment 1"></div>
+                    <div class="slide"><img src="images/refurb2.jpg" alt="Refurbishment 2"></div>
+                    <div class="slide"><img src="images/" alt="Refurbishment 3"></div>
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="content">
+                    <h1>Home Refurbishment</h1>
+                    <h2>Revitalizing existing structures with a focus on quality and craftsmanship.</h2>
+                    <p>Home Refurbishment with Lokai Construction is a chance to breathe life into your home and rejuvenate your love for it. A home refurbishment can transform the way you view and interact with your home. In most prime postcodes it is economically viable to “improve, not move”.
+
+By Refurbishing, Converting or Extending, we can help you create usable and additional living space.
+
+Simply updating the decor of you home can make a huge improvement. In an entire home refurbishment, we combine expansion, conversions of lofts, basements, garages and structural alterations. Home Refurbishment does not stop only at rebuilding and adding more space, it also implies modernising of the electrics, plumbing, Bathrooms, Kitchens, audio/video and security.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/demo.jpg" alt="Demolition 1"></div>
+                    <div class="slide"><img src="images/demo2.jpg" alt="Demolition 2"></div>
+                    <div class="slide"><img src="images/demo3.jpg" alt="Demolition 3"></div>
+                
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="content">
+                    <h1>Demolition Contractor</h1>
+                    <h2>Safe and efficient demolition services for projects of all sizes.</h2>
+                    <p>We have built up an enviable reputation as expert contractors and pride ourselves on our ability to deliver a range of services in both the domestic, commercial and Industrial demolition.
+
+Our professional team is comprehensively trained in all aspects of heavy machinery operation, providing efficiency and safety at every stage of the job, with health and safety being our main priority on all contracts.
+
+Our Demolition Services provide competitive demolition and decommissioning services, including strategy development, hazard characterisation, decontamination (asbestos and chemo-toxic), de-planting, asset disposal, demolition and land remediation.</p>
+                    
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/aggr.jpg" alt="Plant Hire 1"></div>
+                    <div class="slide"><img src="images/agg3.webp" alt="Plant Hire 2"></div>
+                    <div class="slide"><img src="images/agg2.jpg" alt="Plant Hire 3"></div>
+                    
+                </div>
+            </div>
+        
+            <div class="overlay">
+                <div class="content">
+                    <h1>Aggregates</h1>
+                    <h2></h2>
+                    <p>At Lokai construction, we have a vision of a sustainable future. Our Aggregates Supply and construction waste solutions mean waste from Grab Hire. We understand reliability is key and work closely with our clients to ensure we meet their needs and do not let them down. Ordinarily, we can provide Grab Hire, Tipper Hire, Bulk Haulage, Skip Hire, and Aggregates supply services on a next day basis. We can charge per load, per tonne or per day and operate 7 days per week. Nightwork is also available for utility companies and local authorities. </p>
+                
+                </div>
+            </div>
+        </div>
+
+        <div class="hero-section">
+            <div class="slideshow">
+                <div class="slides">
+                    <div class="slide"><img src="images/conc.webp" alt="Plan Hire 1"></div>
+                    <div class="slide"><img src="images/conc2.jpg" alt="Plan Hire 2"></div>
+                    <div class="slide"><img src="images/conc3.jpg" alt="Plan Hire 3"></div>    
+                </div>
+            </div>
+            <div class="overlay">
+                <div class="content">
+                    <h1>Concrete</h1>
+                    <h2>Ready Mix Concrete</h2>
+                    <P>At Lokai Concrete, we are passionate about the environment and have a vision of a sustainable future. Our Ready Mix Concrete and waste solutions mean our production, waste removal and aggregates supply work in tandem to create efficiency and quality.</P>
+                </div>
+            </div>
+        </div>
+
+        <div class="notify-section">
+            <h3>Get Notified</h3>
+            <form action="contact.php" method="post">
+                <input type="email" name="email" placeholder="Enter your email" required>
+                <button type="submit">Subscribe</button>
+            </form>
+        </div>
+        <div class="container">
+            <h1>Contact Us</h1>
+            <form id="contactForm" action="contact.php" method="POST">
+                <label for="name">Name</label>
+                <input type="text" id="name" name="name" required>
+
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="5" required></textarea>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-media">
+            <a href="#" class="fa fa-facebook"></a>
+            <a href="#" class="fa fa-twitter"></a>
+            <a href="#" class="fa fa-instagram"></a>
+            <a href="#" class="fa fa-linkedin"></a>
+        </div>
+        <div class="footer-links">
+            <a href="contact.html">Contact Us</a>
+            <a href="#">Email</a>
+            <a href="#">Privacy Policy</a>
+        </div>
+        <p>&copy; 2024 Lokai Construction. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const slides = document.querySelectorAll('.slides');
+            const slide = document.querySelectorAll('.slide');
+            let currentIndex = 0;
+
+            const showNextSlide = () => {
+                currentIndex = (currentIndex + 1) % slide.length;
+                slides.forEach(slideContainer => {
+                    slideContainer.style.transform = `translateX(-${currentIndex * 100}%)`;
+                });
+            };
+
+            setInterval(showNextSlide, 3000); // Change slide every 3 seconds
+        });
+    </script>
+
+</body>
+
+</html>
